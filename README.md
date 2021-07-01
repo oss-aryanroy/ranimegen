@@ -1,6 +1,10 @@
 # ranimegen
 Python Package for Random Anime Generation 
 
+```
+pip install ranimegen
+``` 
+
 # Usage
 
 ```py
@@ -13,5 +17,5 @@ myinfo = await generator.suggestanime()
 print(myinfo)
 
 ...
->>> (json response with anime information)
+>>> (json response with anime information from Kitsu's API)
 ```
