@@ -1,5 +1,5 @@
 # ranimegen
-Python Package for Random Anime Generation 
+Python Package for Random Anime Generation using BeautifulSoup and KitsuAPI
 
 ```
 pip install ranimegen
