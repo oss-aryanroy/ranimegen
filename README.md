@@ -11,7 +11,7 @@ pip install ranimegen
 from ranimegen.animegen import RandomAnime()
 
 
-generator = animegen.RandomAnime()
+generator = RandomAnime()
 myinfo = await generator.suggestanime()
 
 print(myinfo)
