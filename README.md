@@ -1,4 +1,6 @@
 # ranimegen
+![](https://img.shields.io/pypi/v/ranimegen)
+
 Python Package for Random Anime Generation using BeautifulSoup and KitsuAPI
 
 ```
