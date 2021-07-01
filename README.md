@@ -1,5 +1,5 @@
 # ranimegen
-![(https://pypi.org/project/ranimegen/](https://img.shields.io/pypi/v/ranimegen)
+![https://pypi.org/project/ranimegen/](https://img.shields.io/pypi/v/ranimegen)
 
 Python Package for Random Anime Generation using BeautifulSoup and KitsuAPI
 
