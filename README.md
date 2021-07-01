@@ -1,5 +1,5 @@
 # ranimegen
-Python Package for Random Anime Suggestions
+Python Package for Random Anime Generation 
 
 ```
 pip install ranimegen
@@ -8,10 +8,10 @@ pip install ranimegen
 # Usage
 
 ```py
-from ranimegen.animegen import RandomAnime
+from ranimegen.animegen import RandomAnime()
 
 
-generator = RandomAnime()
+generator = animegen.RandomAnime()
 myinfo = await generator.suggestanime()
 
 print(myinfo)
