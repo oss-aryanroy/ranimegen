@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 import random
 from bs4 import BeautifulSoup
-from ranimegen.workers import get_anime, get_info
+from ranimegen.workers import get_anime, get_info, parse_html
 
 class RandomAnime:
     def __init__(self):
