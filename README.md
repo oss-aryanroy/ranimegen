@@ -10,7 +10,7 @@ pip install ranimegen
 # Usage
 
 ```py
-from ranimegen.animegen import RandomAnime()
+from ranimegen.animegen import RandomAnime
 
 
 generator = RandomAnime()
