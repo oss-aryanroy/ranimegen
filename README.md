@@ -1,13 +1,13 @@
 # ranimegen
 ![https://pypi.org/project/ranimegen/](https://img.shields.io/pypi/v/ranimegen)
 
-Python Package for Random Anime Generation using BeautifulSoup and KitsuAPI
+Python Package for Random Anime Generation using BeautifulSoup, KitsuAPI and JikanAPI
 
 ```
 pip install ranimegen
 ``` 
 
-# Usage
+# Basic Usage
 
 ```py
 from ranimegen.animegen import RandomAnime
@@ -21,10 +21,202 @@ print(myinfo)
 ...
 >>> (json response with anime information from Kitsu's API)
 ```
+# Advanced Usage
 
+```py
+from ranimegen.animegen import RandomAnime
+
+generator = RandomAnime()
+
+
+all_genre = generator.genres
+print(all_genre)
+...
+>>> ['Action', 'Adventure', 'Cars', 'Comedy', 'Dementia', 'Demons', 'Mystery', 'Drama', 'Ecchi', 'Fantasy', 'Game', 'Historical', 'Horror', 'Kids', 'Magic', 'Martial_Arts', 'Mecha', 'Music', 'Parody', 'Samurai', 'Romance', 'School', 'Sci-Fi', 'Shoujo', 'Shoujo_Ai', 'Shounen', 'Shounen_Ai', 'Space', 'Sports', 'Super_Power', 'Vampire', 'Yaoi', 'Yuri', 'Harem', 'Slice_of_Life', 'Supernatural', 'Military']
+```
+
+
+
+
+You can now get suggestion for specific genres mentioned above!
+
+```py
+myinfo = await generator.suggestanime(genre="demons magic romance slice_of_life")
+print(myinfo)
+```
+
+Also added a safe argument, which is True by default. If added argument was set to false, the suggest might return NSFW content as well! (hentai)
+
+```py
+myinfo = await generator.suggestanime(safe=False) # genre = hentai (optional)
+```
+
+However do note, output for NSFW content is different, as Jikan API is being utilized instead of Kitsu API to get the information for nsfw content. Kitsu API request OAuth verification for obtaining NSFW searches. With this also comes an issue of keeping in mind of Jikan API's ratelimits. Which is apparently 2 requests /second or 30 requests/min. Keeping in mind the code's execution and waiting time, you **SHOULD NOT** hit the ratelimits. However, it is advised to apply a cooldown to usage of this.
+
+(About 10 outputs per search) `to access go inside the result key and index the list of animes`
+```py
+{
+   "request_hash":"request:search:ae32ae0c4d226c8ad08425b99439fec98c0afce2",
+   "request_cached":false,
+   "request_cache_expiry":432000,
+   "results":[
+      {
+         "mal_id":29575,
+         "url":"https://myanimelist.net/anime/29575/Mankitsu_Happening",
+         "image_url":"https://cdn.myanimelist.net/images/anime/9/77590.jpg?s=632a5d33145d2000ce5fec1dfbd76747",
+         "title":"Mankitsu Happening",
+         "airing":false,
+         "synopsis":"Keiichi Oyamada has a mysterious power that always makes him seem like a lucky pervert, as one way or another, he ends up having sexual intercourse with any female he meets. Due to this, he has never...",
+         "type":"OVA",
+         "episodes":4,
+         "score":7.71,
+         "start_date":"2015-03-27T00:00:00+00:00",
+         "end_date":"2015-08-28T00:00:00+00:00",
+         "members":44340,
+         "rated":"Rx"
+      },
+      {
+         "mal_id":28299,
+         "url":"https://myanimelist.net/anime/28299/Ookami_Shoujo_to_Kuro_Ouji__Gishinanki_–_Happening_Kiss",
+         "image_url":"https://cdn.myanimelist.net/images/anime/7/70461.jpg?s=dfa14663b872f4ce145864ed99fad9d2",
+         "title":"Ookami Shoujo to Kuro Ouji: Gishinanki – Happening Kiss",
+         "airing":false,
+         "synopsis":"OVA bundled with 12th manga volume. The OVA includes a popular chapter that was not adapted in the TV series. (Source: MAL News, edited)",
+         "type":"OVA",
+         "episodes":1,
+         "score":7.26,
+         "start_date":"2015-04-24T00:00:00+00:00",
+         "end_date":"2015-04-24T00:00:00+00:00",
+         "members":46014,
+         "rated":"PG-13"
+      },
+      {
+         "mal_id":12643,
+         "url":"https://myanimelist.net/anime/12643/Happening_Star_☆",
+         "image_url":"https://cdn.myanimelist.net/images/anime/13/35451.jpg?s=5a0eb50bd55a698956cca73f514c8ca7",
+         "title":"Happening Star ☆",
+         "airing":false,
+         "synopsis":"The science-fiction adventure story takes place 46 million light years away from Earth in the Sombrero Galaxy on a planet named Milky. The alien boy Kid, who refers to himself as Space's #1 Pilot, use...",
+         "type":"OVA",
+         "episodes":1,
+         "score":0,
+         "start_date":"2012-01-22T00:00:00+00:00",
+         "end_date":"2012-01-22T00:00:00+00:00",
+         "members":180,
+         "rated":"G"
+      },
+      {
+         "mal_id":40085,
+         "url":"https://myanimelist.net/anime/40085/Maesetsu",
+         "image_url":"https://cdn.myanimelist.net/images/anime/1555/109492.jpg?s=db938c91fd6ee0c19c6ecb20179fdcc3",
+         "title":"Maesetsu!",
+         "airing":false,
+         "synopsis":"The anime centers on four girls at the full bloom of their youth, working hard to achieve their dreams as they struggle valiantly. In Japanese entertainment, Maesetsu! refers to an introductory talk o...",
+         "type":"TV",
+         "episodes":12,
+         "score":5.75,
+         "start_date":"2020-10-11T00:00:00+00:00",
+         "end_date":"2020-12-27T00:00:00+00:00",
+         "members":9339,
+         "rated":"PG-13"
+      },
+      {
+         "mal_id":6628,
+         "url":"https://myanimelist.net/anime/6628/Dengeki_Bunko_2007_Movie_Festival_Special",
+         "image_url":"https://cdn.myanimelist.net/images/anime/8/15181.jpg?s=5e1ef148ac8218f710fea53e6a5f59da",
+         "title":"Dengeki Bunko 2007 Movie Festival Special",
+         "airing":false,
+         "synopsis":"Played at Dengeki Bunko's Movie Festival on 21 April 2007 before the Shakugan no Shana, Inukami! and Kino no Tabi movies. It was later released on DVD and sold at Dengeki's 15th Anniversary event.",
+         "type":"Special",
+         "episodes":1,
+         "score":6.18,
+         "start_date":"2007-04-21T00:00:00+00:00",
+         "end_date":"2007-04-21T00:00:00+00:00",
+         "members":4523,
+         "rated":"G"
+      },
+      {
+         "mal_id":9629,
+         "url":"https://myanimelist.net/anime/9629/Cyborg_009__The_Reopening",
+         "image_url":"https://cdn.myanimelist.net/images/anime/5/26666.jpg?s=7d5619c5ad046ba8670040e98f07a1a1",
+         "title":"Cyborg 009: The Reopening",
+         "airing":false,
+         "synopsis":"A short 3D CGI anime of Cyborg 009 produced by director Oshii Mamoru.",
+         "type":"Special",
+         "episodes":1,
+         "score":5.53,
+         "start_date":"2010-10-05T00:00:00+00:00",
+         "end_date":"2010-10-05T00:00:00+00:00",
+         "members":1691,
+         "rated":"PG-13"
+      },
+      {
+         "mal_id":19573,
+         "url":"https://myanimelist.net/anime/19573/Short_Peace_Opening",
+         "image_url":"https://cdn.myanimelist.net/images/anime/10/55731.jpg?s=0dbe5b4182e1d3d4e3845ef7aa65f526",
+         "title":"Short Peace Opening",
+         "airing":false,
+         "synopsis":"The opening animation of the compilation movie, Short Peace.",
+         "type":"Special",
+         "episodes":1,
+         "score":6.21,
+         "start_date":"2013-07-20T00:00:00+00:00",
+         "end_date":"2013-07-20T00:00:00+00:00",
+         "members":5346,
+         "rated":"G"
+      },
+      {
+         "mal_id":42142,
+         "url":"https://myanimelist.net/anime/42142/X-Men_Openings",
+         "image_url":"https://cdn.myanimelist.net/images/anime/1198/107853.jpg?s=451d6a13d37569f0f79f67dbcd022f66",
+         "title":"X-Men Openings",
+         "airing":false,
+         "synopsis":"For the TV Tokyo dub of the series, the intro was replaced with a new, Japanese-animated sequence as well as a new theme called \"Rising\", by the band Ambience. Starting with episode 42, a second new i...",
+         "type":"Special",
+         "episodes":2,
+         "score":6.48,
+         "start_date":"1994-04-01T00:00:00+00:00",
+         "end_date":"1994-10-01T00:00:00+00:00",
+         "members":302,
+         "rated":"PG-13"
+      },
+      {
+         "mal_id":32728,
+         "url":"https://myanimelist.net/anime/32728/Sensou_no_Tsukurikata",
+         "image_url":"https://cdn.myanimelist.net/images/anime/1444/93487.jpg?s=8a69e10df77f3c16921047b76a78132f",
+         "title":"Sensou no Tsukurikata",
+         "airing":false,
+         "synopsis":"Short anti-war animation adapting the picture book Sensou no Tsukurikata. It was created by the group NOddIN.",
+         "type":"Movie",
+         "episodes":1,
+         "score":6.45,
+         "start_date":"2015-10-02T00:00:00+00:00",
+         "end_date":"2015-10-02T00:00:00+00:00",
+         "members":592,
+         "rated":"PG"
+      },
+      {
+         "mal_id":28205,
+         "url":"https://myanimelist.net/anime/28205/Fastening_Days",
+         "image_url":"https://cdn.myanimelist.net/images/anime/10/68209.jpg?s=5f49d81e38eddd67c0007083716370f9",
+         "title":"Fastening Days",
+         "airing":false,
+         "synopsis":"Yoji and Kei, a boy and girl, live in a town in the not-so-distant future with their foster parent, Anna. But these seemingly ordinary children have a secret hidden even from their unsuspecting mother...",
+         "type":"ONA",
+         "episodes":1,
+         "score":6.45,
+         "start_date":"2014-10-30T00:00:00+00:00",
+         "end_date":"2014-10-30T00:00:00+00:00",
+         "members":5472,
+         "rated":"G"
+      }
+   ],
+   "last_page":20
+}
+``` 
 # Output Format: JSON
 
-(About 10 outputs per search) `to access go inside the data keyword and index the list of animes`
+(About 10 outputs per search) `to access go inside the data key and index the list of animes`
 
 ```py
 {

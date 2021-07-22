@@ -13,7 +13,7 @@ classifiers = [
 
 setup(
     name="ranimegen",
-    version="0.0.1",
+    version="0.1.0",
     description="A python lib to generate random anime and its information",
     long_description=open("README.md").read(),
     long_description_content_type='text/markdown',
